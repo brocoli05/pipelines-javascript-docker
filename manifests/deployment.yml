@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: brocolipipelinesjavascriptdocker 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brocolipipelinesjavascriptdocker
+  template:
+    metadata:
+      labels:
+        app: brocolipipelinesjavascriptdocker 
+    spec:
+      containers:
+        - name: brocolipipelinesjavascriptdocker 
+          image: minji284.azurecr.io/brocolipipelinesjavascriptdocker
+          ports:
+          - containerPort: 8081
