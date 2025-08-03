@@ -32,7 +32,6 @@ stages:
     displayName: Build
     pool:
       name: self-hosted-pool
-      vmImage: $(vmImageName)
     steps:
     - task: Docker@2
       displayName: Build and push an image to container registry
@@ -57,7 +56,6 @@ stages:
     displayName: Deploy
     pool:
       name: self-hosted-pool
-      vmImage: $(vmImageName)
     environment: 'brocoli05pipelinesjavascriptdocker.default'
     strategy:
       runOnce:
@@ -87,7 +85,6 @@ stages:
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
     pool:
       name: self-hosted-pool
-      vmImage: $(vmImageName)
 
     environment: 'brocoli05pipelinesjavascriptdocker.$(k8sNamespaceForPR)'
     strategy:
