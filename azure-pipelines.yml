@@ -31,6 +31,7 @@ stages:
   - job: Build
     displayName: Build
     pool:
+      name: self-hosted-pool
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
@@ -55,6 +56,7 @@ stages:
     condition: and(succeeded(), not(startsWith(variables['Build.SourceBranch'], 'refs/pull/')))
     displayName: Deploy
     pool:
+      name: self-hosted-pool
       vmImage: $(vmImageName)
     environment: 'brocoli05pipelinesjavascriptdocker.default'
     strategy:
@@ -84,6 +86,7 @@ stages:
     displayName: Deploy Pull request
     condition: and(succeeded(), startsWith(variables['Build.SourceBranch'], 'refs/pull/'))
     pool:
+      name: self-hosted-pool
       vmImage: $(vmImageName)
 
     environment: 'brocoli05pipelinesjavascriptdocker.$(k8sNamespaceForPR)'
